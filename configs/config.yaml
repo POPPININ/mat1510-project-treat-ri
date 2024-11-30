@@ -1,0 +1,37 @@
+data:
+  path: "data/multi_agent_ri_trs_data.pt"
+
+model:
+  hidden_dim: 64
+  latent_dim: 16
+  feature_dim: 2
+  save_path: "models/treat_model.pth"
+
+training:
+  epochs: 50
+  timesteps: 10
+  loss_mode: "gt-rev"
+  trs_weight: 0.5
+  rot_forward_weight: 0.5
+  include_rot_forward_loss: true
+
+optimizer:
+  name: "AdamW"  # Choose from ["SGD", "AdamW", "MomentumSGD"]
+  params:
+    lr: 0.005  # Learning rate
+    momentum: 0.9  # Only relevant for MomentumSGD/SGD
+    weight_decay: 0.001  # Weight decay (regularization)
+    nesterov: true  # Only relevant for MomentumSGD
+
+scheduler:
+  name: "CosineAnnealingLR"  # Choose from ["StepLR", "ExponentialLR", "CosineAnnealingLR", "ReduceLROnPlateau"]
+  params:
+    T_max: 50  # Only for CosineAnnealingLR
+    step_size: 10  # Only for StepLR
+    gamma: 0.5  # For StepLR and ExponentialLR
+    factor: 0.1  # Only for ReduceLROnPlateau
+    patience: 5  # Only for ReduceLROnPlateau
+
+device: "cpu"
+
+random_seed: 42

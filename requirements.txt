@@ -1,0 +1,7 @@
+torch
+torchdiffeq
+numpy
+pyyaml
+pytest
+matplotlib
+torch_scatter
